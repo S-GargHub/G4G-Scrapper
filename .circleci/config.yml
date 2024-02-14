@@ -21,7 +21,7 @@ jobs:
       - run: 
           name: Install Docker on EC2
           command: |
-            ssh -i $HOME/.ssh/id_rsa_qZt4fTD2pxAV3i3t4oJkOw+GMGHAGe5RJrsZw1t9BIU ec2-user@ec2-3-16-66-174.us-east-2.compute.amazonaws.com
+            echo "yes" | ssh -i $HOME/.ssh/id_rsa_qZt4fTD2pxAV3i3t4oJkOw+GMGHAGe5RJrsZw1t9BIU ec2-user@ec2-3-16-66-174.us-east-2.compute.amazonaws.com
             sudo yum install docker
             sudo service start docker
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUBUSER" --password-stdin
