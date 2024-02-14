@@ -5,18 +5,14 @@ jobs:
       - image: circleci/python:3
     steps:
       - checkout
-      # - run:
-      #     name: Load Environment Variables
-      #     command: |
-      #       npm install dotenv
-      #       source .env
       - setup_remote_docker
       - run:
           name: Build and push Docker image
           command: |
             docker build -t g4g-profile-scrapper:latest .
+            echo "Username: $DOCKERHUB_USERNAME"
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker image tag g4g-profile-scrapper:latest sgarg95/scrapper:$(git rev-parse --short HEAD)
+            docker image tag g4g-profile-scrapper:latest "$DOCKERHUB_USERNAME"/scrapper:$(git rev-parse --short HEAD)
             docker push sgarg95/scrapper:latest
             docker push sgarg95/scrapper:$(git rev-parse --short HEAD)
   run_tests:
