@@ -13,18 +13,17 @@ jobs:
             echo "Username: $DOCKERHUBUSER"
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUBUSER" --password-stdin
             docker image tag g4g-profile-scrapper:latest "$DOCKERHUBUSER"/scrapper:$(git rev-parse --short HEAD)
-            docker push sgarg95/scrapper:latest
             docker push sgarg95/scrapper:$(git rev-parse --short HEAD)
   run_tests:
     docker:
       - image: circleci/python:3
     steps:
       - checkout
-      # - run:
-      #     name: Install Python dependencies
-      #     command: |
-      #       echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-      #       pip install -r requirements.txt
+      - run:
+          name: Install Python dependencies
+          command: |
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+            pip install -r requirements.txt
       - run:
           name: Run server
           command: python3 app.py
