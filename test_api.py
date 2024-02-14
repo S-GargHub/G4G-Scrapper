@@ -4,7 +4,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-def test_api_endpoint():
+def test_api_endpoint_success():
     # Assuming your Flask app is running on localhost and port 5000
     url = 'http://localhost:5000/user/akashnnegi'
 
@@ -19,3 +19,13 @@ def test_api_endpoint():
     assert 'info' in data
     assert 'username' in data['info']
     assert data['info']['username'] == 'akashnnegi'
+
+
+def test_api_endpoint_failure():
+    # Assuming your Flask app is running on localhost and port 5000
+    url = 'http://localhost:5000/akashnnegi'
+
+    # Make a GET request to the API endpoint
+    response = requests.get(url)
+
+    assert response.status_code == 404
