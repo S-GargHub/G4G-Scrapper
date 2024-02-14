@@ -12,8 +12,7 @@ jobs:
             pip install --user -r requirements.txt
       - run:
           name: Run server
-          command: python3 app.py
-
+          command: python3 app.py &
       - run:
           name: Run unit tests
           command: |
