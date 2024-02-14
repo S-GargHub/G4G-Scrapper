@@ -18,6 +18,9 @@ jobs:
           fingerprints:
             - "SHA256:qZt4fTD2pxAV3i3t4oJkOw+GMGHAGe5RJrsZw1t9BIU"
 
+      - run:
+          name: Debugging - Print SSH Key
+          command: ls ~/.ssh/
       - run: 
           name: Install Docker on EC2
           command: |
