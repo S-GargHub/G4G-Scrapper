@@ -18,4 +18,4 @@ def test_api_endpoint():
     data = response.json()
     assert 'info' in data
     assert 'username' in data['info']
-    assert data['info']['username'] == 'akashnnegi!'
+    assert data['info']['username'] == 'akashnnegi'
