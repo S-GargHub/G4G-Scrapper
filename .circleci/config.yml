@@ -11,6 +11,10 @@ jobs:
             echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
             pip install --user -r requirements.txt
       - run:
+          name: Run server
+          command: python3 app.py
+
+      - run:
           name: Run unit tests
           command: |
             pytest 
