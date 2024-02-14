@@ -37,7 +37,7 @@ class scrap():
                         'link': question_link
                     })
 
-            # Print extracted categories, count and questions
+            # Extract categories, count and questions
             for category, questions in categories.items():
                 questionList = []
                 try:
@@ -46,11 +46,8 @@ class scrap():
                     solvedStats[category] = { "count" : 0 }
                 for question in questions:
                     questionList.append({"question": question['title'], "link": question['link']})
-                    print(f"  - Title: {question['title']}")
-                    print(f"    Link: {question['link']}")
                 solvedStats[category]["questions"] = questionList
 
-        
             generalInfo = {}
 
             def extract_detail(key, soup):
