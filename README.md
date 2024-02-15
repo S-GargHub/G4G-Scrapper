@@ -9,8 +9,7 @@ This application is built to scrap the user profile information from website cal
 
 ## Endpoints
 ## How was it built:
-The API is built using Web Scraping the profile page using *BeautifulSoup* and uisng *Flask* to deploy server on web.
-
+The API scrapes the profile page using *BeautifulSoup* and uses *Flask* to deploy server on web.
 
 ## Instructions to run on your local system
 * Pre-requisites:
@@ -106,3 +105,5 @@ The API is built using Web Scraping the profile page using *BeautifulSoup* and u
   }
 }
 ```
+
+
