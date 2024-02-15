@@ -16,9 +16,19 @@ jobs:
             docker push sgarg95/scrapper:$(git rev-parse --short HEAD)
 
       - run:
-          name: Run Tests
+          name: Run docker
           command: |
-            docker run -p 5000:5000 -it --rm g4g-profile-scrapper:latest /bin/sh -c pytest
+            docker run -p 5000:5000 g4g-profile-scrapper:latest
+          background: true
+
+      - run:
+          name: Run unit tests
+          command: |
+            pytest 
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
 
 
   # tests:
@@ -26,14 +36,7 @@ jobs:
   #     - image: g4g-profile-scrapper:latest
   #   steps:
   #     - checkout
-  #     - run:
-  #         name: Run unit tests
-  #         command: |
-  #           pytest 
-  #     - store_test_results:
-  #         path: test-reports
-  #     - store_artifacts:
-  #         path: test-reports
+  #     
 
   deploy:
     docker:
