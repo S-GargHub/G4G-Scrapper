@@ -15,11 +15,18 @@ jobs:
             docker image tag g4g-profile-scrapper:latest "$DOCKERHUBUSER"/scrapper:$(git rev-parse --short HEAD)
             docker push sgarg95/scrapper:$(git rev-parse --short HEAD)
 
+      # Install dependencies (if needed)
+      - run:
+          name: Install Dependencies
+          command: |
+            pip install -r requirements.txt  # Adjust this based on your project's dependencies
+
       # # Debugging - Print Docker Image Contents
       # - run:
       #     name: Print Docker Image Contents
       #     command: |
       #       docker run --entrypoint=/bin/sh sgarg95/scrapper:$(git rev-parse --short HEAD) -c "ls -la /usr/local/bin"
+
       - run:
           name: Run docker
           command: |
