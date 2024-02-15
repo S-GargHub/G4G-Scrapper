@@ -106,6 +106,7 @@ The API scrapes the profile page using *BeautifulSoup* and uses *Flask* to deplo
    - Python 3.x
    - Install all the required libraries using the *requirements.txt* file. 
     ``` pip install -r requirements.txt ```
+   - Docker installed on your machine
 
 * Directions to execute
     - ``` python3 app.py``` or ``` py app.py```
@@ -114,11 +115,6 @@ The API scrapes the profile page using *BeautifulSoup* and uses *Flask* to deplo
 
 * Directions to test
   - Run  ```pytest test_api.py```
-
-## Pre requisities
-   - Docker installed on your machine
-   - Python and any other dependencies specific to the project. Install all the required libraries using the *requirements.txt* file. 
-    ``` pip install -r requirements.txt ```
 
 ## Steps to deploy it the application on Docker Hub and EC2 cloud as part of CI using circleCI:
 
