@@ -2,28 +2,17 @@
 
 This application is built to scrap the user profile information from website called "GeeksForGeeks"
 
-## How was it built:
+## API documentation:
 The API scrapes the profile page using *BeautifulSoup* and uses *Flask* to deploy server on web.
 
-## Instructions to run on your local system
-* Clone the repository:
-  - git clone https://github.com/S-GargHub/G4G-Scrapper.git
-
-* Pre-requisites:
-   - Python 3.x
-   - Install all the required libraries using the *requirements.txt* file. 
-    ``` pip install -r requirements.txt ```
-
-* Directions to execute
-    - ``` python3 app.py``` or ``` py app.py```
-    - Open the web browser and visit the localhost, *http://127.0.0.1:5000/user/GeeksforGeeksUsername*
-    - To view the user details, send a request to the above URL giving the g4g username.
-  
 ## Functionalities
   -  [x]  Method - `GET`
   -  [x]  Extract the relevant data such as institute name, ranking etc from the GFG profile page given a username.
   -  [x]  Extract the count of problems solved based on difficulty categories and list all the problems solved along with the problem link.
 
+## Endpoint
+  - *http://127.0.0.1:5000/user/<GeeksforGeeksUsername>*
+    
 ---
 
 ### Sample API Responses for username *sgarg16*
@@ -108,15 +97,30 @@ The API scrapes the profile page using *BeautifulSoup* and uses *Flask* to deplo
 }
 ```
 
+
+## Instructions to run on your local system
+* Clone the repository:
+  - git clone https://github.com/S-GargHub/G4G-Scrapper.git
+
+* Pre-requisites:
+   - Python 3.x
+   - Install all the required libraries using the *requirements.txt* file. 
+    ``` pip install -r requirements.txt ```
+
+* Directions to execute
+    - ``` python3 app.py``` or ``` py app.py```
+    - Open the web browser and visit the localhost, *http://127.0.0.1:5000/user/GeeksforGeeksUsername*
+    - To view the user details, send a request to the above URL giving the g4g username.
+
 * Directions to test
   - Run  ```pytest test_api.py```
 
-##Pre requisities
+## Pre requisities
    - Docker installed on your machine
    - Python and any other dependencies specific to the project. Install all the required libraries using the *requirements.txt* file. 
     ``` pip install -r requirements.txt ```
 
-## Steps to follow:
+## Steps to deploy it the application on Docker Hub and EC2 cloud as part of CI using circleCI:
 
 1. Build the REST api discussed above. I used flask server as my REST framework and BeautifulSoup to Scrap the webpage.
 2. Try to run it locally to check all the endpoints
