@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Print Docker Image Contents
           command: |
-            docker run --entrypoint=/bin/sh garg95/scrapper:$(git rev-parse --short HEAD) -c "ls -la /usr/local/bin"
+            docker run --entrypoint=/bin/sh sgarg95/scrapper:$(git rev-parse --short HEAD) -c "ls -la /usr/local/bin"
       - run:
           name: Run docker
           command: |
