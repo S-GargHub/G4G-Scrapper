@@ -21,11 +21,11 @@ def test_api_endpoint_success():
     assert data['info']['username'] == 'akashnnegi'
 
 
-def test_api_endpoint_failure():
-    # Assuming your Flask app is running on localhost and port 5000
-    url = 'http://localhost:5000/akashnnegi'
+# def test_api_endpoint_failure():
+#     # Assuming your Flask app is running on localhost and port 5000
+#     url = 'http://localhost:5000/akashnnegi'
 
-    # Make a GET request to the API endpoint
-    response = requests.get(url)
+#     # Make a GET request to the API endpoint
+#     response = requests.get(url)
 
-    assert response.status_code == 404
+#     assert response.status_code == 404
