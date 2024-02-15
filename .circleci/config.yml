@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
-  deploy:
+
+  build:
     docker:
       - image: circleci/python:3
     steps:
@@ -13,7 +14,26 @@ jobs:
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUBUSER" --password-stdin
             docker image tag g4g-profile-scrapper:latest "$DOCKERHUBUSER"/scrapper:$(git rev-parse --short HEAD)
             docker push sgarg95/scrapper:$(git rev-parse --short HEAD)
-      
+
+  tests:
+    docker:
+      - image: sgarg95/scrapper:$(git rev-parse --short HEAD)
+    steps:
+      - checkout
+      - run:
+          name: Run unit tests
+          command: |
+            pytest 
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
+
+  deploy:
+    docker:
+      - image: circleci/python:3
+    steps:
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - "SHA256:qZt4fTD2pxAV3i3t4oJkOw+GMGHAGe5RJrsZw1t9BIU"
@@ -28,32 +48,14 @@ jobs:
             sudo docker run -p 5000:5000 sgarg95/scrapper:$(git rev-parse --short HEAD)
             ENDSSH
           background: true
-  run_tests:
-    docker:
-      - image: circleci/python:3
-    steps:
-      # - checkout
-      # - run:
-      #     name: Install Python dependencies
-      #     command: |
-      #       echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-      #       pip install -r requirements.txt
-      # - run:
-      #     name: Run server
-      #     command: python3 app.py
-      #     background: true
-      - run:
-          name: Run unit tests
-          command: |
-            pytest 
-      - store_test_results:
-          path: test-reports
-      - store_artifacts:
-          path: test-reports
 workflows:
   build_test:
     jobs:
-      - deploy
-      - run_tests:
+      - build
+      - tests:
           requires:
-            - deploy
+            - build
+      
+      - deploy:
+          requires:
+            - tests
