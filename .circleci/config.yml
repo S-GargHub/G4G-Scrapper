@@ -27,20 +27,21 @@ jobs:
             sudo docker pull sgarg95/scrapper:$(git rev-parse --short HEAD)
             sudo docker run -p 5000:5000 sgarg95/scrapper:$(git rev-parse --short HEAD)
             ENDSSH
-  run_tests:
-    docker:
-      - image: circleci/python:3
-    steps:
-      - checkout
-      - run:
-          name: Install Python dependencies
-          command: |
-            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-            pip install -r requirements.txt
-      - run:
-          name: Run server
-          command: python3 app.py
           background: true
+  run_tests:
+    # docker:
+    #   - image: circleci/python:3
+    # steps:
+    #   - checkout
+    #   - run:
+    #       name: Install Python dependencies
+    #       command: |
+    #         echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+    #         pip install -r requirements.txt
+    #   - run:
+    #       name: Run server
+    #       command: python3 app.py
+    #       background: true
       - run:
           name: Run unit tests
           command: |
