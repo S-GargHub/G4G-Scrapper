@@ -29,19 +29,19 @@ jobs:
             ENDSSH
           background: true
   run_tests:
-    # docker:
-    #   - image: circleci/python:3
-    # steps:
-    #   - checkout
-    #   - run:
-    #       name: Install Python dependencies
-    #       command: |
-    #         echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-    #         pip install -r requirements.txt
-    #   - run:
-    #       name: Run server
-    #       command: python3 app.py
-    #       background: true
+    docker:
+      - image: circleci/python:3
+    steps:
+      # - checkout
+      # - run:
+      #     name: Install Python dependencies
+      #     command: |
+      #       echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+      #       pip install -r requirements.txt
+      # - run:
+      #     name: Run server
+      #     command: python3 app.py
+      #     background: true
       - run:
           name: Run unit tests
           command: |
