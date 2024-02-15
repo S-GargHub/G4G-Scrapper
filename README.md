@@ -1,5 +1,7 @@
 # G4G-Scrapper
 
+This application is built to scrap the user profile information from website called "GeeksForGeeks"
+
 ## Functionalities
   -  [x]  Method supported - `GET`
   -  [x]  Extract the relevant data such as institute name, ranking etc from the GFG profile page given a username.
