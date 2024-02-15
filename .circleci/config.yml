@@ -15,19 +15,25 @@ jobs:
             docker image tag g4g-profile-scrapper:latest "$DOCKERHUBUSER"/scrapper:$(git rev-parse --short HEAD)
             docker push sgarg95/scrapper:$(git rev-parse --short HEAD)
 
-  tests:
-    docker:
-      - image: g4g-profile-scrapper:latest
-    steps:
-      - checkout
       - run:
-          name: Run unit tests
+          name: Run Tests
           command: |
-            pytest 
-      - store_test_results:
-          path: test-reports
-      - store_artifacts:
-          path: test-reports
+            docker run -it --rm g4g-profile-scrapper:latest /bin/sh -c pytest
+
+
+  # tests:
+  #   docker:
+  #     - image: g4g-profile-scrapper:latest
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Run unit tests
+  #         command: |
+  #           pytest 
+  #     - store_test_results:
+  #         path: test-reports
+  #     - store_artifacts:
+  #         path: test-reports
 
   deploy:
     docker:
@@ -52,10 +58,10 @@ workflows:
   build_test:
     jobs:
       - build
-      - tests:
-          requires:
-            - build
+      # - tests:
+      #     requires:
+      #       - build
       
       - deploy:
           requires:
-            - tests
+            - build
