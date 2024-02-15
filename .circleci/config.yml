@@ -19,7 +19,6 @@ jobs:
           name: Run docker
           command: |
             docker run -it --rm -p 5000:5000 sgarg95/scrapper:$(git rev-parse --short HEAD) /bin/sh -c pytest
-            docker run  
           background: true
 
       - run:
