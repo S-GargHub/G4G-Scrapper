@@ -16,12 +16,11 @@ jobs:
       
       - add_ssh_keys:
           fingerprints:
-            - "a3:9d:3c:7d:0a:f3:a5:36:23:da:c6:4f:d4:59:c9:75:a0:6e:61:bb"
-
+            - SHA256:qZt4fTD2pxAV3i3t4oJkOw+GMGHAGe5RJrsZw1t9BIU
       - run: 
           name: Install Docker on EC2
           command: |
-            ssh -i ~/.ssh/config ec2-user@ec2-3-16-66-174.us-east-2.compute.amazonaws.com
+            ssh -i $HOME/.ssh/id_rsa_SHA256qZt4fTD2pxAV3i3t4oJkOw+GMGHAGe5RJrsZw1t9BIU ec2-user@ec2-3-16-66-174.us-east-2.compute.amazonaws.com
             sudo yum install docker
             sudo service start docker
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUBUSER" --password-stdin
